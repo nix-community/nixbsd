@@ -12,11 +12,6 @@
     flake-compat.url = "https://flakehub.com/f/edolstra/flake-compat/1.tar.gz";
   };
 
-  nixConfig = {
-    extra-substituters = [ "https://attic.mildlyfunctional.gay/nixbsd" ];
-    extra-trusted-public-keys = [ "nixbsd:gwcQlsUONBLrrGCOdEboIAeFq9eLaDqfhfXmHZs1mgc=" ];
-  };
-
   outputs =
     {
       self,
