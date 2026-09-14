@@ -1,10 +1,6 @@
 {
   inputs = {
     nixpkgs.url = "https://channels.nixos.org/nixos-unstable-small/nixexprs.tar.xz";
-    cppnix = {
-      url = "github:nixos/nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     mini-tmpfiles = {
       url = "github:nixos-bsd/mini-tmpfiles";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -16,7 +12,6 @@
     {
       self,
       nixpkgs,
-      cppnix ? null,
       mini-tmpfiles,
       ...
     }:
@@ -72,7 +67,6 @@
             inherit (nixpkgs) lib;
             nixpkgsPath = nixpkgs.outPath;
             specialArgs = {
-              cppnixFlake = cppnix;
               mini-tmpfiles-flake = mini-tmpfiles;
             }
             // (args.specialArgs or { });
