@@ -49,6 +49,11 @@
           vmClosureInfo = extended.pkgs.closureInfo {
             rootPaths = [ extended.config.system.build.vm.drvPath ];
           };
+          isoClosureInfo = lib.optionalAttrs (extended.config.system.build ? isoImage) (
+            extended.pkgs.closureInfo {
+              rootPaths = [ extended.config.system.build.isoImage.drvPath ];
+            }
+          );
           system = extended.config.system.build.toplevel;
           inherit (extended) pkgs config;
         };
@@ -86,6 +91,9 @@
         }
         // lib.optionalAttrs (attrs.systemImage != null) {
           inherit (attrs) systemImage;
+        }
+        // lib.optionalAttrs (attrs ? isoImage) {
+          inherit (attrs) isoImage;
         }
       ) self.packages.x86_64-linux;
     };
